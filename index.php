@@ -65,7 +65,12 @@ $hotels = [
         <tr>
             <th scope="row"><?php echo $proprieta['name']?></th>
             <td><?php echo $proprieta['description'] ?></td>
-            <td><?php echo $proprieta['parking'] ?></td>
+            <td><?php if ($proprieta['parking']){
+                echo'si';
+                } else {
+                    echo 'no';
+                }
+                ?></td>
             <td><?php echo $proprieta['vote']?></td>
             <td><?php echo $proprieta['distance_to_center']?></td>
         </tr>
