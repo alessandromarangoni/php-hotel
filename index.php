@@ -51,6 +51,7 @@ $hotels = [
         'distance_to_center' => 50
     ],
 ];
+$filtrati = array_filter($hotels, fn($H) => $H['parking'])
 ?>
 <table class="table">
     <thead>
@@ -62,23 +63,11 @@ $hotels = [
             <th scope="col">Distanza dal centro</th>
         </tr>
     </thead>
-<?php foreach ($hotels as $hotel => $proprieta) { ?>
     <tbody>
         <tr>
-            <?php if ($filtroP&& $proprieta['parking']) { ?>
+            <?php if ($filtroP) { ?>
+                <?php foreach ($filtrati as $hotel => $proprieta) { ?>
                 <th scope="row"><?php echo $proprieta['name']?></th>
-                <td><?php echo $proprieta['description'] ?></td>
-                <td><?php if ($proprieta['parking']){
-                    echo'si';
-                    } else {
-                        echo 'no';
-                    }
-                    ?></td>
-                <td><?php echo $proprieta['vote']?></td>
-                <td><?php echo $proprieta['distance_to_center']?></td>
-        <?php  } elseif (!$filtroP){?>
-        <?php } ?>
-        <th scope="row"><?php echo $proprieta['name']?></th>
                 <td><?php echo $proprieta['description'] ?></td>
                 <td><?php if ($proprieta['parking']){
                     echo'si';
@@ -91,6 +80,23 @@ $hotels = [
         </tr>
     <tbody>
 <?php } ?>
+<?php } else{ ?>
+                    <?php foreach ($hotels as $hotel2 => $proprieta) { ?>
+                        <th scope="row"><?php echo $proprieta['name']?></th>
+                        <td><?php echo $proprieta['description'] ?></td>
+                        <td><?php if ($proprieta['parking']){
+                            echo'si';
+                            } else {
+                                echo 'no';
+                            }
+                            ?></td>
+                        <td><?php echo $proprieta['vote']?></td>
+                        <td><?php echo $proprieta['distance_to_center']?></td>
+                </tr>
+            <tbody>
+<?php } ?>
+<?php } ?>
+
 <a href="form.php">filtra la tua ricerca</a>
 <?php echo $filtroP ?>
 </body>
