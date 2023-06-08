@@ -12,7 +12,6 @@
 </head>
 <body>
 <?php
-
 $hotels = [
     [
         'name' => 'Hotel Belvedere',
@@ -49,18 +48,29 @@ $hotels = [
         'vote' => 2,
         'distance_to_center' => 50
     ],
-
 ];
-
-
-foreach ($hotels as $hotel => $proprieta) {
-    echo 
-    $proprieta['name'] . '<br>' .
-    $proprieta['description'] . '<br>' .
-    $proprieta['parking'] . '<br>' .
-    $proprieta['vote'] . '<br>' .
-    $proprieta['distance_to_center'] . '<br>';
-}
 ?>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Descrizione</th>
+            <th scope="col">Parcheggio</th>
+            <th scope="col">Voti</th>
+            <th scope="col">Distanza dal centro</th>
+        </tr>
+    </thead>
+<?php foreach ($hotels as $hotel => $proprieta) { ?>
+    <tbody>
+        <tr>
+            <th scope="row"><?php echo $proprieta['name']?></th>
+            <td><?php echo $proprieta['description'] ?></td>
+            <td><?php echo $proprieta['parking'] ?></td>
+            <td><?php echo $proprieta['vote']?></td>
+            <td><?php echo $proprieta['distance_to_center']?></td>
+        </tr>
+    <tbody>
+<?php } ?>
+
 </body>
 </html>
