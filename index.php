@@ -12,6 +12,8 @@
 </head>
 <body>
 <?php
+$filtroP= $_GET['parcheggio'];
+
 $hotels = [
     [
         'name' => 'Hotel Belvedere',
@@ -63,19 +65,33 @@ $hotels = [
 <?php foreach ($hotels as $hotel => $proprieta) { ?>
     <tbody>
         <tr>
-            <th scope="row"><?php echo $proprieta['name']?></th>
-            <td><?php echo $proprieta['description'] ?></td>
-            <td><?php if ($proprieta['parking']){
-                echo'si';
-                } else {
-                    echo 'no';
-                }
-                ?></td>
-            <td><?php echo $proprieta['vote']?></td>
-            <td><?php echo $proprieta['distance_to_center']?></td>
+            <?php if ($filtroP&& $proprieta['parking']) { ?>
+                <th scope="row"><?php echo $proprieta['name']?></th>
+                <td><?php echo $proprieta['description'] ?></td>
+                <td><?php if ($proprieta['parking']){
+                    echo'si';
+                    } else {
+                        echo 'no';
+                    }
+                    ?></td>
+                <td><?php echo $proprieta['vote']?></td>
+                <td><?php echo $proprieta['distance_to_center']?></td>
+        <?php  } elseif (!$filtroP){?>
+        <?php } ?>
+        <th scope="row"><?php echo $proprieta['name']?></th>
+                <td><?php echo $proprieta['description'] ?></td>
+                <td><?php if ($proprieta['parking']){
+                    echo'si';
+                    } else {
+                        echo 'no';
+                    }
+                    ?></td>
+                <td><?php echo $proprieta['vote']?></td>
+                <td><?php echo $proprieta['distance_to_center']?></td>
         </tr>
     <tbody>
 <?php } ?>
-
+<a href="form.php">filtra la tua ricerca</a>
+<?php echo $filtroP ?>
 </body>
 </html>
